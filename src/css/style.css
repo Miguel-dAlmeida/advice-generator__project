@@ -1,0 +1,95 @@
+html {
+    font-size: 1rem;
+}
+
+body {
+    background-color: hsl(218, 23%, 16%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .advice-card {
+        margin: auto 0.94rem 0;
+        padding: 2.38rem 0 2.81rem;
+        border-radius: 0.63rem;
+        background-color: hsl(217, 19%, 24%);
+        position: relative;
+        text-align: center;
+        width: 18.13rem;
+        height: auto;
+
+        & .advice-card__title {
+            color: hsl(150, 100%, 66%);
+            font-weight: 600;
+            margin-bottom: 1.38rem;
+            letter-spacing: 0.13rem;
+        }
+
+        & .advice-card__paragraph {
+            font-size: 1.25rem;
+            line-height: 1.69rem;
+            font-weight: 700;
+            max-width: 85%;
+            margin: 0 auto;
+            color: hsl(193, 38%, 86%);
+            margin-bottom: 1.25rem;
+        }
+
+        & .advice-card__split-image img {
+            width: 85%;
+        }
+
+        & .advice-card__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: hsl(150, 100%, 66%);
+            width: 3.44rem;
+            height: 3.44rem;
+            border-radius: 100%;
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            bottom: -10.9%;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                box-shadow: 0 0 15px rgba(0, 255, 180, 0.5);
+            }
+
+            & img {
+                width: 1.50rem;
+            }
+        }
+
+
+    }
+
+    & .credits {
+        margin: auto 0 1rem;
+        text-align: center;
+        font-size: 0.63rem;
+
+        & .credits__paragraph {
+            color: hsl(193, 38%, 86%);
+
+            & .credits__link {
+                color: hsl(150, 100%, 66%);
+                font-weight: 600;
+                transition: 0.3s;
+
+                &:hover {
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
