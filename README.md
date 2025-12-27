@@ -434,10 +434,10 @@ Como citei na seção **Desafios Enfrentados**, após receber um feedback negati
 Iniciei esse aprofundamento assistindo a dois vídeos do canal [**DevClub | Programação**](https://www.youtube.com/@canaldevclub), nos quais o professor Rodolfo Mori recria o site da Microsoft passo a passo. O primeiro vídeo foca na estrutura HTML e na estilização base, enquanto o segundo se aprofunda especificamente na responsividade. Deixo os links abaixo caso você também queira se aprofundar no tema:
 
 **1. Reconstruindo o Site da Microsoft do Zero | Passo a Passo**
-[![Reconstruindo o Site da Microsoft do Zero | Passo a Passo](./src/images/devClub_microsoftWebSite.jpeg)](https://www.youtube.com/watch?v=e-MfOcYY5to)
+[![Reconstruindo o Site da Microsoft do Zero | Passo a Passo](https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devClub_microsoftWebSite.jpeg)](https://www.youtube.com/watch?v=e-MfOcYY5to)
 
 **2. Criando Páginas Responsivas do Zero | Passo a Passo**
-[![Criando Páginas Responsivas do Zero | Passo a Passo](./src/images/devClub_responsividadeThumbnail.jpeg)](https://www.youtube.com/watch?v=r5b7RyPUxVA)
+[![Criando Páginas Responsivas do Zero | Passo a Passo](https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devClub_responsividadeThumbnail.jpeg)](https://www.youtube.com/watch?v=r5b7RyPUxVA)
 
 A partir desses conteúdos, extraí alguns aprendizados práticos importantes:
 
@@ -558,7 +558,7 @@ Também não posso deixar de agradecer ao [**DevQuest**](https://www.youtube.com
 
 <div align="center">
       <a href="https://www.youtube.com/@DevemDobro">
-        <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/accordion-faq_project/main/src/images/devQuest_logo.jpg" width="155px" alt="Logo da empresa DevQuest - Dev em Dobro"/>
+        <img src="./src/images/devQuest_logo.jpg" width="155px" alt="Logo da empresa DevQuest - Dev em Dobro"/>
       </a>
 </div>
 <br>
@@ -580,5 +580,5 @@ Este código está disponível exclusivamente para fins educacionais. Qualquer o
 
 <br>
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/accordion-faq_project/main/src/images/closingImage.gif" alt="Imagem representando união e parceria" width="80%">
+  <img src="./src/images/closingImage.gif" alt="Imagem representando união e parceria" width="80%">
 </div>
