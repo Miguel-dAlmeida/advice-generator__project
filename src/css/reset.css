@@ -1,3 +1,11 @@
+/** 
+ * @file            Reset CSS
+ * @description     Defines a consistent baseline across browsers by resetting and normalizing default user-agent styles. Ensures a predictable starting point for all visual elements.
+ * @author          Mário Miguel de Almeida
+ * @last-modified   2025-12-27
+ * @dependencies    none
+ */
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +16,8 @@
 
 body {
   min-height: 100vh;
-  line-height: 100%;
   font-family: 'Manrope';
+  line-height: 100%;
 }
 
 h1 {

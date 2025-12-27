@@ -1,39 +1,46 @@
+/** 
+ * @file            Style CSS
+ * @description     Base stylesheet for the application. Developed following the Mobile First methodology, starting from a minimum viewport width of 320px. Includes layout positioning, color scheme, and typography definitions. All core styling rules are centralized in this file.
+ * @author          Mário Miguel de Almeida
+ * @last-modified   2025-12-27
+ * @dependencies    reset.css
+ */
+
 html {
     font-size: 1rem;
 }
 
 body {
-    background-color: hsl(218, 23%, 16%);
     min-height: 100vh;
+    background-color: hsl(218, 23%, 16%);
     display: flex;
     flex-direction: column;
     align-items: center;
 
     & .advice-card {
-        margin: auto 0.94rem 0;
-        padding: 2.38rem 0 2.81rem;
-        border-radius: 0.63rem;
-        background-color: hsl(217, 19%, 24%);
         position: relative;
-        text-align: center;
         width: 18.13rem;
         height: auto;
+        margin: auto 0.94rem 0;
+        padding: 2.38rem 0 2.81rem;
+        text-align: center;
+        background-color: hsl(217, 19%, 24%);
+        border-radius: 0.63rem;
 
         & .advice-card__title {
-            color: hsl(150, 100%, 66%);
-            font-weight: 600;
             margin-bottom: 1.38rem;
+            font-weight: 600;
             letter-spacing: 0.13rem;
+            color: hsl(150, 100%, 66%);
         }
 
         & .advice-card__paragraph {
+            max-width: 85%;
+            margin: 0 auto 1.25rem auto;
             font-size: 1.25rem;
             line-height: 1.69rem;
             font-weight: 700;
-            max-width: 85%;
-            margin: 0 auto;
             color: hsl(193, 38%, 86%);
-            margin-bottom: 1.25rem;
         }
 
         & .advice-card__split-image img {
@@ -41,18 +48,18 @@ body {
         }
 
         & .advice-card__button {
+            position: absolute;
+            right: 50%;
+            bottom: -10.9%;
+            width: 3.44rem;
+            height: 3.44rem;
+            background-color: hsl(150, 100%, 66%);
+            border-radius: 100%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: hsl(150, 100%, 66%);
-            width: 3.44rem;
-            height: 3.44rem;
-            border-radius: 100%;
-            position: absolute;
-            right: 50%;
             transform: translateX(50%);
-            bottom: -10.9%;
-            cursor: pointer;
             transition: 0.3s;
 
             &:hover {
@@ -69,8 +76,8 @@ body {
 
     & .credits {
         margin: auto 0 1rem;
-        text-align: center;
         font-size: 0.63rem;
+        text-align: center;
 
         & .credits__paragraph {
             color: hsl(193, 38%, 86%);

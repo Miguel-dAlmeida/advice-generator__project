@@ -322,111 +322,233 @@ Inicialmente, minha intenção era aplicar a mesma estratégia no desktop. Contu
 
 
 ## **Aprendizado Adquirido**
-Explorar:
-No segundo, aprofundei meu entendimento sobre experiência do usuário e acessibilidade, percebendo que o `clamp()` deve ser aplicado com critério e em contextos bem definidos. Esses aprendizados serão explorados com mais profundidade na seção **Aprendizado Adquirido**.
 
-Explicar - **Uso Estratégico de REM:**  e utilização de clamp() e breakpoints desktop.
+A jornada de desenvolvimento do **Advice Generator** poderia ter sido significativamente mais curta — isso se eu tivesse me contentado com pouco, o que definitivamente não é o meu perfil. Mesmo com o projeto já finalizado e visualmente consistente, os problemas identificados na responsividade (descritos na seção anterior) me levaram à decisão de refatorar a aplicação. Para isso, percebi que precisava ampliar meu repertório teórico antes de mexer no código.
 
-### Aprimoramento do raciocínio para códigos responsivos
+Sou essencialmente autodidata. Pesquisar, estudar de forma independente e aprender diretamente das fontes faz parte do meu processo natural de aprendizado. Foi exatamente isso que fiz aqui.
 
-No projeto anterior ([**5° Exercício - Slider Image**](https://github.com/Miguel-dAlmeida/slider-image_project)), meu maior desafio foi a responsividade. Como foi minha primeira aplicação unindo HTML, CSS e JS, sofri bastante para adaptar a página a diferentes resoluções, especialmente em telas com altura reduzida, onde os elementos frequentemente se sobrepunham.
+A seguir, apresento um resumo dos principais aprendizados obtidos ao longo desse processo — desde conceitos revisitados durante a estruturação do projeto até conhecimentos aprofundados após a codificação.
 
-No Accordion FAQ, percebi logo de início que o layout tenderia a ter os mesmos problemas — como o `footer` invadindo o conteúdo principal em alturas menores. Mas, dessa vez, carregava a experiência anterior comigo. Antes de implementar, já testei diferentes contextos de altura reduzida e experimentei ajustes de espaçamento e posicionamento para evitar esses conflitos.
+### Revisão da tag `<picture>` e diferenças entre `:focus` e `:focus-visible`
 
-A solução envolveu o uso de margens verticais automáticas, a troca do `position: absolute` para `static` em determinados casos e o ajuste de margens e espaçamentos específicos em breakpoints. Essa bagagem prática me permitiu avançar de forma mais rápida e fluida, sem os travamentos ou frustrações que tive antes.
+Durante a construção da estrutura HTML, encontrei um trecho do layout que previa duas imagens distintas: uma para desktop e outra para mobile. Minha primeira ideia foi inserir duas tags `<img>` e alternar sua visibilidade via CSS. No entanto, eu sabia que existia uma solução mais elegante e semântica — apenas não lembrava exatamente qual.
 
+Após uma breve pesquisa, reencontrei a tag `<picture>`, que permite definir múltiplas fontes de imagem e renderizá-las de acordo com a viewport. Essa abordagem traz vantagens claras: melhora a acessibilidade ao evitar duplicação semântica (um único `alt`), elimina soluções artificiais como `display: none` e contribui para a performance, já que o navegador carrega apenas a imagem necessária.
 
-### Utilização de atributos específicos para a lógica JS + `getAttribute()`
+Nesse mesmo contexto, aproveitei para revisar as diferenças entre as pseudo-classes `:focus` e `:focus-visible`, especialmente sob a ótica de acessibilidade.
 
-Um ponto essencial que aprendi foi planejar a marcação HTML já pensando na futura lógica em JavaScript. No caso do acordeão, eu precisava que a classe `.active` fosse aplicada a elementos irmãos (a pergunta e a resposta), mas apenas um deles estava diretamente ligado à interação do usuário.
+* **`:focus`** seleciona qualquer elemento que recebe foco, seja por clique ou navegação via teclado.
+* **`:focus-visible`** seleciona apenas os elementos que devem exibir um indicador visual de foco, geralmente quando a navegação ocorre via teclado.
 
-Para resolver isso, utilizei um sistema de atributos: cada cabeçalho recebeu um `data-target` e cada bloco de resposta recebeu um `id` correspondente. Assim, com o método `getAttribute()`, eu recuperava o valor do `data-target` e o usava para selecionar o `id` correto via `getElementById()`. Esse mecanismo garantiu a ligação dinâmica entre pergunta e resposta, tornando a lógica funcional.
-
-### Refino do meu entendimento sobre o método `forEach()`
-
-Consolidei meu entendimento sobre como aplicar o `forEach()` em contextos interativos. Quando precisamos que vários elementos compartilhem o mesmo comportamento, essa função se torna uma ferramenta poderosa.
-
-No projeto, usei o `forEach()` de duas formas distintas:
-
-* **Passiva:** percorrendo os cabeçalhos apenas para adicionar escutadores de eventos (sem modificar nada diretamente).
-* **Ativa:** percorrendo novamente os elementos dentro da função de clique para limpar as classes `.active`, garantindo que apenas um item permanecesse aberto.
-
-Esse discernimento entre usos passivos e ativos do `forEach()` ampliou minha visão sobre o papel desse método dentro de uma lógica JS.
-
-### Uso de seletores complexos unindo classes HTML e classes JS
-
-Aprofundei minha prática com seletores CSS que dependem de classes adicionadas dinamicamente via JS. Houve momentos em que eu precisava alterar a estética de elementos que não recebiam diretamente a classe `.active`. A solução foi usar a hierarquia: quando um elemento superior recebia `.active`, os estilos eram propagados para os elementos internos.
-
-Exemplo:
+A estratégia mais adequada para equilibrar estética e acessibilidade consiste em combinar ambas:
 
 ```css
-.faq__accordion-header {
-  &.active .faq__accordion-trigger .faq__accordion-icon {
-    & .faq__icon-image--default {
-      display: none;
-    }
-    & .faq__icon-image--active {
-      display: block;
-    }
-  }
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid aquamarine;
 }
 ```
 
+Essa abordagem evita outlines desnecessários quando o foco vem do mouse, mas preserva o indicador visual essencial para usuários que navegam via teclado.
 
-### Insights da aula de resolução do Curso Dev Quest
+### Atributo `aria-label`
 
-Após finalizar minha versão, assisti à aula de resolução do exercício com o professor Beto (Desenvolvedor Web Sênior). Notei uma diferença de abordagem interessante: no código dele, apenas o cabeçalho recebia a classe `.ativo`, simplificando a lógica do JS. Na minha versão, tanto cabeçalho quanto conteúdo recebiam a classe `.active`, o que exigiu a estratégia com `data-target` + `getAttribute()`.
+Outro aprendizado relevante foi o uso do atributo `aria-label`. Ele permite fornecer uma descrição textual a elementos que não possuem texto visível, tornando sua função compreensível para tecnologias assistivas, como leitores de tela.
 
-Essa diferença trouxe prós e contras: minha versão manteve maior semântica no HTML, enquanto a versão do professor simplificou a lógica. No fim, percebi que não existe apenas uma forma “certa” de resolver, e conhecer múltiplos padrões enriquece muito meu repertório como desenvolvedor.
+No projeto, utilizei o `aria-label` no botão responsável por gerar novos conselhos, garantindo que sua finalidade fosse clara mesmo sem texto visível:
 
-### Revisão do uso de `overflow: hidden;`
-
-Ao pensar na animação do acordeão, percebi que alternar apenas a propriedade `display` resultaria em uma transição brusca. Pesquisando alternativas, encontrei uma solução mais profissional: controlar o `max-height` (`0` para fechado e um valor específico para aberto) em conjunto com `overflow: hidden;`.
-
-Sem esse `overflow`, o conteúdo extrapolaria os limites do container, comprometendo a estética.
-
-## **Desenvolvimento Contínuo e Autossuperação**
-
-Essa é, sem dúvidas, a seção que mais gosto de escrever. De alguns projetos para cá, ela se tornou um verdadeiro diário pessoal — o espaço em que exponho não apenas o desenvolvimento técnico, mas também o emocional que o sustenta.
-
-Quando iniciei o FAQ Accordion, havia expandido minhas responsabilidades acadêmicas: matriculei-me em dois cursos extras — um de neurociência e outro de inglês.
-
-No curso de neurociência, aprendi a importância de equilibrar a vida em dois momentos:
-
-1. **Sprint** — grandes esforços cognitivos, como o desenvolvimento de um projeto.
-2. **Polimento** — esforços médios, como a escrita deste README.
-
-Por isso, reservo tempo de qualidade para atividades como essa escrita, mesmo quando minha autocrítica insiste em gritar: *“Vamos, cara, você está perdendo tempo. Volte a produzir imediatamente.”*
-
-A verdade é que nunca me enxerguei verdadeiramente como alguém equilibrado. Sobrevivo graças à disciplina, às sessões exaustivas de estudo, à renúncia aos prazeres e ao confronto com tarefas difíceis. Mas hoje consigo ser mais flexível: aceito parar para organizar, preparar o terreno, **afiar o machado** — sem me obrigar a estar em produção constante.
-
-Uma metáfora que me marcou e inspirou essa mudança veio do vídeo [*Não ignore a manutenção da sua vida*](https://www.youtube.com/watch?v=_piJ_68V1B8), do canal **Pinho**.
-
-> Num dia ensolarado, um homem observou um trabalhador tentando cortar uma árvore. O esforço era intenso, mas o machado estava cego, e os golpes mal arranhavam a madeira. Ao sugerir que ele parasse para afiá-lo, o trabalhador respondeu:
-> *“Não tenho tempo para isso. Preciso trabalhar.”*
+```html
+<button
+  id="actionButton"
+  class="advice-card__button"
+  aria-label="Generate advice"
 >
-> Essa cena ilustra uma verdade profunda: quando negligenciamos a manutenção em nome da pressa, conquistamos apenas o efêmero. A constância, e não a urgência, é o que gera estabilidade. Afie-se. Cuide-se. Só então conquiste — com propósito, coração e desapego do imediato.
+  <img src="src/images/icon-dice.svg" alt="Dice icon">
+</button>
+```
 
-Ainda assim, reconheço: não há momentos de maior identificação pessoal do que quando me reencontro com minha voz interna desequilibrada e implacável. Ela aparece quando penso em desistir, quando sinto medo, preguiça, raiva ou angústia. É nesses instantes — quando orgulho, vaidade, inseguranças e mediocridade me esmagam — que escuto aquela voz brutal:
+Em resumo, o `aria-label` melhora a acessibilidade ao adicionar significado sem interferir no layout visual.
 
-*“O que você está pensando? Como assim não vai fazer? Como assim não vai mandar tudo àquele lugar e continuar? Como assim não vai engolir tudo isso e passar por cima da dor?”*
+### Quando associar valores JavaScript a variáveis?
 
-E então respondo:
+Ao finalizar a lógica JavaScript, surgiu uma dúvida prática: **quando faz sentido associar valores a variáveis ou constantes?**
+Buscando responder isso de forma objetiva, identifiquei três cenários claros em que essa associação é recomendada.
 
-*“Eu conheço a verdade. Já estive na zona do arrependimento. Eu sei o que é a dor de não ter tentado. Eu já passei por isso inúmeras vezes e sobrevivi. Hoje é o dia que eu esperava. Convido todos vocês — medo, preguiça, inseguranças — a se sentarem comigo e me acompanharem na dança. Mergulhem comigo no fogo, testem sua criatividade para me travar, tentem me derrubar… Eu estive esperando por esse dia.*
+**1. Valores reutilizados**
+No código original, elementos eram buscados repetidamente no DOM a cada interação:
 
-É nesse momento que escrevo no meu caderno: **“Eu renuncio!”**
-Renuncio ao conforto, à covardia e à mediocridade. Aceito a dor no peito e sigo adiante. Esse é o meu verdadeiro dom: a capacidade de mergulhar no sofrimento e ouvir a voz implacável que não me deixa desistir.
+```js
+document.getElementById("adviceDescription").innerText = ...
+document.getElementById("adviceId").innerText = ...
+```
 
-**Nota importante:** Não confundam minhas palavras: não considero que cada dia de estudo, trabalho ou treino seja sofrimento. Pelo contrário, gosto da disciplina e até encontro prazer nas tarefas difíceis. O que quero dizer é que assumir responsabilidades diariamente inevitavelmente traz dor. Não há como escapar — existirão dias ruins, contratempos e frustrações. Minha forma de seguir em frente nesses momentos é peculiar: enfrento a dor com a própria dor. Foi assim, com essa estratégia um pouco melancólica, que consegui construir consistência.
+Associar esses elementos a variáveis uma única vez, no escopo global, evita buscas desnecessárias e torna o código mais eficiente e organizado.
 
-> *As pessoas me perguntam: **“Como você correu com os pés quebrados, com as canelas fraturadas?”** Minha mente sabia: é assim que operamos. Estamos no treinamento dos SEALs da Marinha. É o que somos. Isso se tornou a minha nova norma. Não dei a mim mesmo nenhuma saída. Não havia nada fora daquelas paredes do inferno. Nada.  
-Eu amo Deus, mas, por um curto período de tempo, eu me tornei o diabo — porque aquilo era o inferno. Eu me tornei o SEAL dentro do treinamento dos SEALs da Marinha. Essa era a minha mentalidade. Você se coloca, se emerge seja lá onde for, e se torna aquilo, sem se dar nenhuma saída.  
-Eu encontrei paz do outro lado, ao me encontrar. E ninguém realmente se encontra sem passar por provações, tribulações, sofrimento e responsabilidade. **E responsabilidade é sofrimento. Ser responsável todos os dias — por fazer a coisa certa, por você mesmo, pelas pessoas ao seu redor — é difícil, é miserável.*** — **David Goggins**
+**2. Legibilidade e manutenção**
+Comparando:
 
-> *Nunca se esqueça: a conquista de si mesmo é um processo permanente. Nunca é hora de parar.* — **David Goggins**
+```js
+document.getElementById("adviceId").innerText = ...
+```
 
-Voltando à parte acadêmica, meu próximo desafio será a etapa **“Quest HTML + CSS + JS Intermediário”** do curso _DevQuest_. Nela, colocarei em prática os aprendizados dos módulos de **HTML** e **CSS Avançados** junto ao **JavaScript Intermediário**, desenvolvendo um formulário com validação de dados.
+com:
+
+```js
+adviceIdEl.innerText = ...
+```
+
+O segundo exemplo é mais curto, legível, fácil de refatorar e menos suscetível a erros caso IDs ou estruturas mudem.
+
+**3. Valores constantes**
+Strings fixas, como URLs de API, devem ser armazenadas em constantes:
+
+```js
+const API_URL = "https://api.adviceslip.com/advice";
+```
+
+Isso evita repetição, reduz erros de digitação e facilita alterações futuras.
+
+### Estratégia `font-size: 62.5%` vs. preferências do usuário
+
+A partir de um feedback da IA, descobri que a estratégia de definir `html { font-size: 62.5% }` vem caindo em desuso por conflitar com boas práticas de acessibilidade.
+
+Essa técnica foi popularizada por facilitar cálculos com `rem`, convertendo a base de 16px em 10px. O problema é que o tamanho base do navegador pode ser alterado pelo usuário por motivos de acessibilidade. Ao redefinir essa base, o desenvolvedor ignora essa preferência e compromete tanto a previsibilidade do zoom quanto a experiência do usuário.
+
+A abordagem moderna consiste em manter:
+
+```css
+html {
+  font-size: 100%;
+}
+```
+
+Assim, unidades `rem` respeitam o tamanho base definido pelo navegador e pelas configurações do usuário.
+
+### **Responsividade: conceitos modernos, acessibilidade, preferências do usuário e a função `clamp()`**
+
+Como citei na seção **Desafios Enfrentados**, após receber um feedback negativo da IA sobre minhas estratégias de responsividade, decidi buscar conhecimento fora do escopo do curso DevQuest, com o objetivo de lapidar melhor esse aspecto — que, hoje, considero um dos mais importantes no desenvolvimento front-end.
+
+Iniciei esse aprofundamento assistindo a dois vídeos do canal [**DevClub | Programação**](https://www.youtube.com/@canaldevclub), nos quais o professor Rodolfo Mori recria o site da Microsoft passo a passo. O primeiro vídeo foca na estrutura HTML e na estilização base, enquanto o segundo se aprofunda especificamente na responsividade. Deixo os links abaixo caso você também queira se aprofundar no tema:
+
+**1. Reconstruindo o Site da Microsoft do Zero | Passo a Passo**
+[![Reconstruindo o Site da Microsoft do Zero | Passo a Passo](./src/images/devClub_microsoftWebSite.jpeg)](https://www.youtube.com/watch?v=e-MfOcYY5to)
+
+**2. Criando Páginas Responsivas do Zero | Passo a Passo**
+[![Criando Páginas Responsivas do Zero | Passo a Passo](./src/images/devClub_responsividadeThumbnail.jpeg)](https://www.youtube.com/watch?v=r5b7RyPUxVA)
+
+A partir desses conteúdos, extraí alguns aprendizados práticos importantes:
+
+* primeiro contato com o Bootstrap (e aqui não tem como negar: é uma baita mão na roda);
+* estratégias de cabeçalho responsivo sem padding limitante, utilizando `justify-content: space-around`;
+* uso mais avançado de Flexbox para construção de cards responsivos;
+* controle do tamanho de elementos por meio de contêineres pais;
+* alinhamento de componentes considerando o layout como um todo, e não de forma isolada.
+
+Foi durante essa imersão que uma ficha finalmente caiu: **sites modernos não são completamente fluidos**. Os elementos não ficam se redimensionando constantemente conforme a largura da tela varia. A responsividade, na prática, está muito mais relacionada ao **aproveitamento inteligente do espaço disponível** e à **reorganização do layout**, do que à simples mudança contínua de escala dos elementos.
+
+Mesmo entendendo que o dimensionamento fluido não era tão essencial quanto eu imaginava, ainda assim decidi me aprofundar na função `clamp()`. Eu sabia que ela tinha seu valor e suspeitava que existiam contextos específicos em que seu uso faria sentido. E, de fato, fazia.
+
+O primeiro material que estudei foi um artigo escrito por **Adrian Bece**, um desenvolvedor web fullstack experiente. Nele, encontrei exatamente o que estava procurando: uma explicação **matemática** do funcionamento do `clamp()`. A fórmula apresentada foi:
+
+```
+y = (v / 100) * x + r
+```
+
+Onde:
+
+* **x** representa a largura atual da viewport (em pixels);
+* **y** é o tamanho final da fonte (em pixels);
+* **v** é o valor em `vw`, responsável pela inclinação da linha (ou seja, a taxa de crescimento);
+* **r** é o valor em `rem`, convertido para pixels, que funciona como deslocamento inicial.
+
+Com isso, percebi que era possível criar funções extremamente específicas, com controle total sobre o intervalo de crescimento da tipografia.
+
+O ponto central defendido por Bece nessa parte do artigo pode ser resumido na seguinte ideia:
+
+> Aqui o objetivo **não é experimentar valores** até “parecer bom”.
+> O objetivo é **calcular matematicamente** os valores de `vw` e `rem` no `clamp()` para que a tipografia **comece a crescer exatamente em um ponto** e **pare exatamente em outro** da largura da tela.
+
+Ou seja, se um designer me entregasse requisitos como:
+
+* fonte mínima de **36px**;
+* fonte máxima de **52px**;
+* crescimento iniciando em **600px** de viewport;
+* crescimento finalizando em **1400px**;
+
+eu conseguiria, após esse estudo, transformar essas exigências em um `clamp()` preciso e previsível.
+
+Além disso, descobri a [**Calculadora de `clamp()`**](https://modern-fluid-typography.vercel.app/), uma ferramenta que automatiza esses cálculos e facilita bastante a nossa vida.
+
+Foi também no artigo de Adrian Bece que compreendi um dos maiores problemas do dimensionamento fluido: **a acessibilidade**. Para introduzir esse ponto, ele cita o especialista em acessibilidade **Adrian Roselli**:
+
+> “Ao usar unidades `vw` ou ao limitar o tamanho máximo do texto com `clamp()` em elementos com `display: inline`, existe a possibilidade de o usuário não conseguir ampliar o texto para 200% do tamanho original. Isso viola a diretriz WCAG 1.4.4 (Redimensionar texto, nível AA). Portanto, é essencial testar cuidadosamente o comportamento da página ao aplicar zoom.”
+
+Em termos práticos, ao aplicar zoom, a viewport “encolhe” efetivamente (por exemplo, 800px se comporta como 400px em 200% de zoom). Isso reduz o valor calculado de `vw` dentro do `clamp()`, neutralizando o aumento esperado do texto. Elementos `inline` agravam ainda mais esse problema, pois dificultam o reflow do conteúdo.
+
+Por isso, o uso do `clamp()` exige testes cuidadosos em diferentes contextos, especialmente quando acessibilidade e experiência do usuário são prioridades atualmente.
+
+Ainda no artigo de Bece, aprendi sobre os **casos de uso recomendados** para o `clamp()`, novamente introduzidos por uma citação da designer **Elise Hein**:
+
+> “Não consegui identificar muitos cenários em que a tipografia baseada na viewport seja superior ao uso de breakpoints em termos de legibilidade. Dois casos se destacam: textos de destaque (display text) e a manutenção de uma medida consistente.”
+
+Após concluir esse estudo, decidi me aprofundar ainda mais na relação entre responsividade fluida, acessibilidade e expectativa do usuário. Para isso, li o artigo:
+
+[**Por que a tipografia deveria ser fluida, afinal?**](https://elisehe.in/2021/03/13/fluid-type), de Elise Hein.
+
+Nesse texto, entendi algo que explodiu minha mente: existe uma **expectativa implícita** por parte dos usuários ao redimensionar uma janela do navegador. As pessoas não ajustam o tamanho da janela para “avaliar o design”. Normalmente, fazem isso por motivos práticos. Aumentar a janela costuma significar querer **ver mais conteúdo**, e não o mesmo conteúdo ampliado. Reduzir a janela, por sua vez, geralmente está associado ao uso simultâneo de múltiplas aplicações.
+
+A hipótese levantada por Elise é que interfaces completamente fluidas, que respondem ao redimensionamento apenas escalando seus elementos, acabam ignorando essa expectativa implícita do usuário.
+
+Ao final, ela levanta um questionamento provocador:
+será que a fluidez excessiva não reduz a pressão sobre designers e desenvolvedores para realmente adaptar layouts a diferentes contextos e tamanhos de tela?
+
+Por fim, deixo abaixo os links para as páginas do Notion onde organizei todos esses aprendizados, além das questões de fixação elaboradas durante o estudo. Sinta-se à vontade para explorá-las:
+
+* [Anotações dos Aprendizados Adquiridos](https://gigantic-chef-a6f.notion.site/Exerc-cio-JavaScript-Avan-ado-2bbcd10b93ab806e81d8ef6bde9f7e1f)
+* [Questões de Fixação – estudo ativo e revisões espaçadas](https://gigantic-chef-a6f.notion.site/Quest-es-de-Fixa-o-Exerc-cio-JS-Avan-ado-2d5cd10b93ab80689789eed5d2b5bde1)
+
+## **Desenvolvimento contínuo e autossuperação**
+
+Bom, mais um ciclo finalizado. E uma frase de David Goggins — alguém de quem eu já era fã e agora sou ainda mais (estou lendo o livro dele) — insiste em ocupar minha mente. Na verdade, ela não sai da minha cabeça:
+
+> “Não existe linha de chegada na vida. A conquista de si mesmo é uma jornada permanente. Nunca é hora de parar.”
+> — David Goggins
+
+Os frutos, a recompensa e a colheita de tudo o que estou plantando — disciplina, organização, responsabilidade e determinação — virão um dia. Tenho absoluta certeza de que integrarei uma equipe de desenvolvimento de alto nível.
+Mas será que perseguir isso diretamente, se apegar a esse resultado, é realmente o caminho? Tenho percebido que não.
+
+Sim, penso nisso. Mas quando penso demais, surge o medo do trabalho — porque, de certa forma, isso ainda está longe. Existe um caminho longo pela frente. Muitas linguagens para dominar. Muitos projetos para construir. Muita coisa para explorar antes que eu tenha a chance de ser contratado como desenvolvedor júnior.
+
+Ainda assim, ao absorver os ensinamentos do Goggins e acompanhar sua jornada, algo em mim se acalma. O trabalho duro diário passa a ser a própria recompensa. O atrito, os obstáculos, as provações, a incerteza — tudo isso forma a zona perfeita para o autodomínio. E não importa o quão longe eu chegue: se eu quiser continuar evoluindo, precisarei continuar vivendo exatamente isso.
+
+Nunca podemos nos afastar demais da linha de largada. Do início da jornada. É ali que moram a resiliência e a perseverança.
+
+Então, que se dane a recompensa final. Que se dane a colheita. Eu escolho me prender ao processo.
+Isso significa uma jornada longa. Uma jornada difícil. Cheia de estudo constante, desafios e tribulações. E, sinceramente, não poderia haver notícia melhor. Eu estou exatamente onde deveria estar.
+
+Ainda inspirado por Goggins, declaro meu próximo ciclo: **vou recriar o site da Microsoft sozinho**, como forma de aprofundar a tríade do front-end — HTML, CSS e JavaScript.
+
+Há um tempo, eu teria evitado isso. Todos nós carregamos um limitador mental e, na maior parte do tempo, operamos muito abaixo do nosso verdadeiro potencial. Eu li sobre Goggins correndo com as pernas quebradas. Acompanhei sua trajetória nas corridas mais difíceis do mundo. Nosso potencial é brutalmente subestimado — e eu já entendi isso.
+
+Eu sou capaz de fazer isso. E, por mais que demore, será um exercício técnico valiosíssimo para o meu desenvolvimento profissional.
+
+> “Ah, mas você vai ficar muito tempo preso nisso.
+> Vai levar semanas para finalizar.
+> Você precisa começar logo a aprender outras linguagens.
+> Precisa arrumar logo um emprego na área.”
+> — Mário Miguel de Almeida
+
+Vai se foder.
+Não existem atalhos para mim.
+
+Eu escolho o caminho de maior resistência. Eu escolho o atrito. Eu escolho o desafio. Então, sim, vou me dedicar a esse projeto agora.
+
+Ao finalizá-lo, pretendo retornar ao conteúdo do curso **DevQuest**, especificamente ao módulo **Projeto Mundo Real: Fetch GitHub**, que aparenta ter uma abordagem teórico-prática mais robusta, acompanhando o desenvolvimento de uma aplicação real junto ao professor.
+
+Nos vemos em breve.
 
 ## **Agradecimentos e Conclusão**
 
