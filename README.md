@@ -21,16 +21,16 @@
 ### **🖥️ Desktop**
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/accordion-faq__project/main/src/images/gif_desktopPreview.gif" alt="Gif do resultado final da página">
+  <img src="" alt="Gif Desktop do resultado final da página">
 </div>
 
 ### **📱 Mobile**
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/accordion-faq__project/main/src/images/gif_mobilePreview.gif" alt="Gif do resultado final da página">
+  <img src="" alt="Gif Mobile do resultado final da página">
 </div>
 
-### [Acesse a página clicando aqui!](https://miguel-dalmeida.github.io/accordion-faq__project/) 
+### [Acesse a página clicando aqui!](https://miguel-dalmeida.github.io/advice-generator__project/) 
 
 ## **Apresentação**
 
@@ -558,7 +558,7 @@ Também não posso deixar de agradecer ao [**DevQuest**](https://www.youtube.com
 
 <div align="center">
       <a href="https://www.youtube.com/@DevemDobro">
-        <img src="./src/images/devQuest_logo.jpg" width="155px" alt="Logo da empresa DevQuest - Dev em Dobro"/>
+        <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devQuest_logo.jpg" width="155px" alt="Logo da empresa DevQuest - Dev em Dobro"/>
       </a>
 </div>
 <br>
@@ -580,5 +580,5 @@ Este código está disponível exclusivamente para fins educacionais. Qualquer o
 
 <br>
 <div align="center">
-  <img src="./src/images/closingImage.gif" alt="Imagem representando união e parceria" width="80%">
+  <img src="https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/closingImage.gif" alt="Imagem representando união e parceria" width="80%">
 </div>

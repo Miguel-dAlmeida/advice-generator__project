@@ -6,7 +6,6 @@
  * @dependencies    reset.css, style.css
  */
 
-
 @media (min-width: 320px) and (orientation: portrait) {
     html {
         font-size: clamp(1rem, 2.2727vw + 0.54545rem, 2rem);
