@@ -20,14 +20,20 @@
 
 ### **🖥️ Desktop**
 
-<div align="center">
-  <img src="" alt="Gif Desktop do resultado final da página">
+<div align="center" >
+  <img width="80%" src="./src/images/desktopFinalProject_gif.gif" alt="Gif Desktop do resultado final da página">
 </div>
 
 ### **📱 Mobile**
 
 <div align="center">
-  <img src="" alt="Gif Mobile do resultado final da página">
+  <img width="80%" src="./src/images/mobileFinalProject_gif.gif" alt="Gif Mobile do resultado final da página">
+</div>
+
+### **Orientação Invertida**
+
+<div align="center">
+  <img width="80%" src="./src/images/invertedOrientationFinalProject_gif.gif" alt="Gif em Orientações Invertidas do resultado final da página">
 </div>
 
 ### [Acesse a página clicando aqui!](https://miguel-dalmeida.github.io/advice-generator__project/) 
