@@ -21,19 +21,19 @@
 ### **🖥️ Desktop**
 
 <div align="center" >
-  <img width="80%" src="./src/images/desktopFinalProject_gif.gif" alt="Gif Desktop do resultado final da página">
+  <img width="80%" src="https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/desktopFinalProject_gif.gif" alt="Gif Desktop do resultado final da página">
 </div>
 
 ### **📱 Mobile**
 
 <div align="center">
-  <img width="80%" src="./src/images/mobileFinalProject_gif.gif" alt="Gif Mobile do resultado final da página">
+  <img width="80%" src="https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/mobileFinalProject_gif.gif" alt="Gif Mobile do resultado final da página">
 </div>
 
 ### **Orientação Invertida**
 
 <div align="center">
-  <img width="80%" src="./src/images/invertedOrientationFinalProject_gif.gif" alt="Gif em Orientações Invertidas do resultado final da página">
+  <img width="80%" src="https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/invertedOrientationFinalProject_gif.gif" alt="Gif em Orientações Invertidas do resultado final da página">
 </div>
 
 ### [Acesse a página clicando aqui!](https://miguel-dalmeida.github.io/advice-generator__project/) 
@@ -535,24 +535,7 @@ Nunca podemos nos afastar demais da linha de largada. Do início da jornada. É 
 Então, que se dane a recompensa final. Que se dane a colheita. Eu escolho me prender ao processo.
 Isso significa uma jornada longa. Uma jornada difícil. Cheia de estudo constante, desafios e tribulações. E, sinceramente, não poderia haver notícia melhor. Eu estou exatamente onde deveria estar.
 
-Ainda inspirado por Goggins, declaro meu próximo ciclo: **vou recriar o site da Microsoft sozinho**, como forma de aprofundar a tríade do front-end — HTML, CSS e JavaScript.
-
-Há um tempo, eu teria evitado isso. Todos nós carregamos um limitador mental e, na maior parte do tempo, operamos muito abaixo do nosso verdadeiro potencial. Eu li sobre Goggins correndo com as pernas quebradas. Acompanhei sua trajetória nas corridas mais difíceis do mundo. Nosso potencial é brutalmente subestimado — e eu já entendi isso.
-
-Eu sou capaz de fazer isso. E, por mais que demore, será um exercício técnico valiosíssimo para o meu desenvolvimento profissional.
-
-> “Ah, mas você vai ficar muito tempo preso nisso.
-> Vai levar semanas para finalizar.
-> Você precisa começar logo a aprender outras linguagens.
-> Precisa arrumar logo um emprego na área.”
-> — Mário Miguel de Almeida
-
-Vai se foder.
-Não existem atalhos para mim.
-
-Eu escolho o caminho de maior resistência. Eu escolho o atrito. Eu escolho o desafio. Então, sim, vou me dedicar a esse projeto agora.
-
-Ao finalizá-lo, pretendo retornar ao conteúdo do curso **DevQuest**, especificamente ao módulo **Projeto Mundo Real: Fetch GitHub**, que aparenta ter uma abordagem teórico-prática mais robusta, acompanhando o desenvolvimento de uma aplicação real junto ao professor.
+De volta ao rumo acadêmico, pretendo retornar ao conteúdo do curso **DevQuest**, especificamente ao módulo **Projeto Mundo Real: Fetch GitHub**, que aparenta ter uma abordagem teórico-prática mais robusta, acompanhando o desenvolvimento de uma aplicação real junto ao professor.
 
 Nos vemos em breve.
 
