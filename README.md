@@ -440,7 +440,7 @@ Como citei na seção **Desafios Enfrentados**, após receber um feedback negati
 Iniciei esse aprofundamento assistindo a dois vídeos do canal [**DevClub | Programação**](https://www.youtube.com/@canaldevclub), nos quais o professor Rodolfo Mori recria o site da Microsoft passo a passo. O primeiro vídeo foca na estrutura HTML e na estilização base, enquanto o segundo se aprofunda especificamente na responsividade. Deixo os links abaixo caso você também queira se aprofundar no tema:
 
 **1. Reconstruindo o Site da Microsoft do Zero | Passo a Passo**
-[![Reconstruindo o Site da Microsoft do Zero | Passo a Passo](https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devClub_microsoftWebSite.jpeg)](https://www.youtube.com/watch?v=e-MfOcYY5to)
+[![Reconstruindo o Site da Microsoft do Zero | Passo a Passo](https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devClub_microsoftWebPageThumbnail.jpeg)](https://www.youtube.com/watch?v=e-MfOcYY5to)
 
 **2. Criando Páginas Responsivas do Zero | Passo a Passo**
 [![Criando Páginas Responsivas do Zero | Passo a Passo](https://raw.githubusercontent.com/Miguel-dAlmeida/advice-generator__project/refs/heads/main/src/images/devClub_responsividadeThumbnail.jpeg)](https://www.youtube.com/watch?v=r5b7RyPUxVA)
